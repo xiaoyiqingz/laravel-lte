@@ -81,7 +81,7 @@ desired effect
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
-
+     @yield('content')
     </section>
     <!-- /.content -->
   </div>

@@ -11,20 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'confirm' => false,
+    'verify' => false,
+]);
+Route::get('logout', 'AuthController@getLogout');
 
-Route::get('/admin', function () {
-    return view('admin.index');
-});
-
-Route::get('/admin1', function () {
-    return view('admin.admin1');
-});
-
-Route::get('/login', function () {
-    return view('admin.login');
-});
-
-Route::post('/auth/login', 'AuthController@login');
+Route::get('/', 'HomeController@index')->middleware('auth');
+Route::get('/home', 'HomeController@index')->middleware('auth');
+Route::get('chart', 'ChartController@index')->middleware('auth');
