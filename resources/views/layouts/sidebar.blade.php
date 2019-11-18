@@ -6,7 +6,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        <img src="{{asset('adminlte/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
         <p>Alexander Pierce</p>
@@ -33,7 +33,7 @@
       <!-- Optionally, you can add icons to the links -->
       <!-- <li class="active"><a href="chart"><i class="fa fa-link"></i> <span>chart</span></a></li> --!>
      @foreach (ViewMenu::lists() as $item)
-         @include('layouts.menu', ['item' => $item])
+         @include('layouts.menu', $item)
      @endforeach
 
       <li class="treeview">
