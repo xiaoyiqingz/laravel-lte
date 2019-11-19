@@ -1,6 +1,10 @@
 @if(!isset($item['children']))
+    @if (!strcmp(url()->current(), url($item['url'])))
+    <li class="active">
+    @else
     <li>
-        <a href="{{$item['url']}}">
+    @endif
+        <a href="{{url($item['url'])}}">
             <i class="{{$item['icon']}}"></i>
             <span>{{$item['title']}}</span>
         </a>
