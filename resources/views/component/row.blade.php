@@ -2,7 +2,7 @@
     @foreach ($columns as $column)
     <div class="col-md-{{$column['colWidth']}}">
         @foreach ($column['column'] as $c)
-            {{ $c['content'] }}
+            {!! $c['content'] !!}
         @endforeach
     </div>
     @endforeach

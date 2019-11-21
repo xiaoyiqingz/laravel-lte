@@ -2,6 +2,6 @@
 
 @section('content')
     @foreach ($content as $c)
-        {{ $c }}
+        {!! $c !!}
     @endforeach
 @endsection
