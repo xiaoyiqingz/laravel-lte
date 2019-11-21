@@ -12,9 +12,16 @@ class Body implements Renderable
 
     public $body = [];
 
-    public function body()
+    public function row($row)
     {
-        $this->body[] = $body;
+        $this->body[] = $row->render();
+
+        return $this;
+    }
+
+    public function body($body)
+    {
+        $this->body = $body;
 
         return $this;
     }
@@ -24,7 +31,7 @@ class Body implements Renderable
         $datas = [
             'title' => $this->title,
             'subTitle' => $this->subTitle,
-            'content' => view('table.table'),
+            'content' => $this->body,
         ];
 
         return view('component.body', $datas);

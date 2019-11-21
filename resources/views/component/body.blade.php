@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    {{ $content }}
+    @foreach ($content as $c)
+        {{ $c }}
+    @endforeach
 @endsection
