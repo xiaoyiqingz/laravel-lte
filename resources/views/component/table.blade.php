@@ -1,7 +1,9 @@
 <div class="box">
-    <div class="box-header">
-        <h3 class="box-title">Hover Data Table</h3>
-    </div>
+    @if(isset($table['title']) && $table['title'])
+        <div class="box-header">
+            <h3 class="box-title">{{$table['title']}}</h3>
+        </div>
+    @endif
     <!-- /.box-header -->
     <div class="box-body">
         <!---

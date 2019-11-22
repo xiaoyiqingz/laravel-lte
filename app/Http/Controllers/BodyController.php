@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Facades\View\Column;
 use App\Facades\View\Body;
 use App\Facades\View\Row;
-use App\Facades\View\Column;
+use App\Facades\View\Table;
 
 class BodyController extends Controller
 {
@@ -15,28 +16,43 @@ class BodyController extends Controller
         $item1 = "<div><span> item1 </span></div>";
         $item2 = "<div><span> item2 </span></div>";
         $item3 = "<div><span> item3 </span></div>";
-        $column1 = Column::append($item1)
+        $column = Column::append($item1)
             ->append($item2)
             ->append($item3);
 
-        $item4 = "<div><span> item3 </span></div>";
-        $item5 = "<div><span> item4 </span></div>";
-        $item6 = "<div><span> item5 </span></div>";
-        $column2 = Column::append($item4)
-            ->append($item5)
-            ->append($item6);
+        $header1 = ['col1', 'col2', 'col3'];
+        $body1 = [
+            ['r11', 'r12', 'r13'],
+            ['r21', 'r22', 'r23'],
+            ['r31', 'r32', 'r33'],
+            ['r41', 'r42', 'r43'],
+            ['r51', 'r52', 'r53'],
+            ['r61', 'r62', 'r63'],
+            ['r71', 'r72', 'r73'],
+        ];
 
-        $item7 = "<div><span> item7 </span></div>";
-        $item8 = "<div><span> item8 </span></div>";
-        $item9 = "<div><span> item9 </span></div>";
-        $column3 = Column::append($item7)
-            ->append($item8)
-            ->append($item9);
+        $table1 = Table::setHeader($header1)
+            ->setBody($body1)
+            ->setTitle('Table-blade1');
 
-        $row1 = Row::column(6, $column1)
-            ->column(6, $column2);
+        $header2 = ['col1', 'col2', 'col3', 'col4', 'clo5', 'col6'];
+        $body2 = [
+            ['r11', 'r12', 'r13', 'r14', 'r15', 'r16'],
+            ['r21', 'r22', 'r23', 'r24', 'r25', 'r26'],
+            ['r31', 'r32', 'r33', 'r34', 'r35', 'r36'],
+            ['r41', 'r42', 'r43', 'r44', 'r45', 'r46'],
+            ['r51', 'r52', 'r53', 'r54', 'r55', 'r56'],
+            ['r61', 'r62', 'r63', 'r64', 'r65', 'r66'],
+            ['r71', 'r72', 'r73', 'r74', 'r75', 'r76'],
+        ];
 
-        $row2 = Row::column(12, $column3);
+        $table2 = Table::setHeader($header2)
+            ->setBody($body2);
+
+        $row1 = Row::column(6, Column::append($table1))
+            ->column(6, $column);
+
+        $row2 = Row::column(12, Column::append($table2));
 
         return Body::row($row1)->row($row2)->render();
     }

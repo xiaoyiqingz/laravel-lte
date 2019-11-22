@@ -8,6 +8,8 @@ class Body extends Facade
 {
     public static function getFacadeAccessor()
     {
-        return \App\Libraries\View\Body::class;
+        //return \App\Libraries\View\Body::class;
+        // see AppServiceProvider
+        return 'body';
     }
 }

@@ -23,7 +23,6 @@ class TableController extends Controller
 
     public function dataTable()
     {
-
         $table = [
             'id' => 'table1',
             'style' => 'table-hover',

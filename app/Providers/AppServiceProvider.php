@@ -13,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('body', function () {
+            return new \App\Libraries\View\Body;
+        });
     }
 
     /**

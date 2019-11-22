@@ -8,6 +8,6 @@ class Column extends Facade
 {
     public static function getFacadeAccessor()
     {
-        return \App\Libraries\View\Column::class;
+        return  new \App\Libraries\View\Column;
     }
 }
