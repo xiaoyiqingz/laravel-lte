@@ -12,9 +12,13 @@ class Body implements Renderable
 
     public $body = [];
 
+    public $jsdata = [];
+
     public function row($row)
     {
         $this->body[] = $row->render();
+
+        $this->jsdata = array_merge($this->jsdata, $row->getJsData());
 
         return $this;
     }
@@ -32,6 +36,7 @@ class Body implements Renderable
             'title' => $this->title,
             'subTitle' => $this->subTitle,
             'content' => $this->body,
+            'jsdata' => $this->jsdata,
         ];
 
         return view('component.body', $datas);

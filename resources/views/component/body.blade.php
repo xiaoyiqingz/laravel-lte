@@ -5,3 +5,9 @@
         {!! $c !!}
     @endforeach
 @endsection
+
+@section('js')
+    @foreach ($jsdata as $jd)
+        {!! $jd !!}
+    @endforeach
+@endsection

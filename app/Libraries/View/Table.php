@@ -3,8 +3,9 @@
 namespace App\Libraries\View;
 
 use Illuminate\Contracts\Support\Renderable;
+use App\Contracts\JsExtender;
 
-class Table implements Renderable
+class Table implements Renderable, JsExtender
 {
     public $id = 'table-id';
 
@@ -17,6 +18,16 @@ class Table implements Renderable
     public $body = [];
 
     public $footer = [];
+
+    public $jsdata = [];
+
+    public $paginate = true;
+
+    public function __construct()
+    {
+        $this->id = 'table-id' . rand(0, 100);
+        $this->paginate = true;
+    }
 
     public function setId($id)
     {
@@ -50,6 +61,28 @@ class Table implements Renderable
         $this->footer = $footer;
 
         return $this;
+    }
+
+    public function paginate(bool $enable)
+    {
+        $this->paginate = $enable;
+    }
+
+    public function extendjs(string $data)
+    {
+        $this->jsdata[] = $js;
+    }
+
+    public function getJsData()
+    {
+        if (!isset($this->jsdata['table_paginate']) && $this->paginate) {
+            $data = [
+                'table' => ['id' => $this->id],
+            ];
+            $this->jsdata['table_paginate'] = view('componentjs.table-pagination-js', $data);
+        }
+
+        return array_values($this->jsdata);
     }
 
     public function render()
