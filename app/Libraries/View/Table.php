@@ -21,12 +21,22 @@ class Table implements Renderable, JsExtender
 
     public $jsdata = [];
 
-    public $paginate = true;
+    public $paginate = [];
 
     public function __construct()
     {
         $this->id = 'table-id' . rand(0, 100);
-        $this->paginate = true;
+
+        $this->paginate = [
+            'table' => ['id' => $this->id],
+            'enable' => true,
+            'paging'      => true,
+            'lengthChange'=> false,
+            'searching'   => false,
+            'ordering'    => false,
+            'info'        => false,
+            'autoWidth'   => false,
+        ];
     }
 
     public function setId($id)
@@ -63,9 +73,14 @@ class Table implements Renderable, JsExtender
         return $this;
     }
 
-    public function paginate(bool $enable)
+    public function paginate(bool $enable = true, $paging = true, $ordering = false, $searching = false)
     {
-        $this->paginate = $enable;
+        $this->paginate['enable'] = $enable;
+        $this->paginate['paging'] = $paging;
+        $this->paginate['ordering'] = $ordering;
+        $this->paginate['searching'] = $searching;
+
+        return $this;
     }
 
     public function extendjs(string $data)
@@ -75,11 +90,8 @@ class Table implements Renderable, JsExtender
 
     public function getJsData()
     {
-        if (!isset($this->jsdata['table_paginate']) && $this->paginate) {
-            $data = [
-                'table' => ['id' => $this->id],
-            ];
-            $this->jsdata['table_paginate'] = view('componentjs.table-pagination-js', $data);
+        if (!isset($this->jsdata['table_paginate']) && $this->paginate['enable']) {
+            $this->jsdata['table_paginate'] = view('componentjs.table-pagination-js', $this->paginate);
         }
 
         return array_values($this->jsdata);

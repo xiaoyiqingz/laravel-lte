@@ -8,12 +8,12 @@
 <script>
   $(function () {
     $('{{'#' . $table['id']}}').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : true,
-      'ordering'    : false,
-      'info'        : true,
-      'autoWidth'   : false
+      'paging'      : {{json_encode($paging)}},
+      'lengthChange': {{json_encode($lengthChange)}},
+      'searching'   : {{json_encode($searching)}},
+      'ordering'    : {{json_encode($ordering)}},
+      'info'        : {{json_encode($info)}},
+      'autoWidth'   : {{json_encode($autoWidth)}}
     })
   })
 </script>

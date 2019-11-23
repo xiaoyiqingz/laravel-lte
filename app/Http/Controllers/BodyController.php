@@ -33,7 +33,8 @@ class BodyController extends Controller
 
         $table1 = Table::setHeader($header1)
             ->setBody($body1)
-            ->setTitle('Table-blade1');
+            ->setTitle('Table-blade1')
+            ->paginate();
 
         $header2 = ['col1', 'col2', 'col3', 'col4', 'clo5', 'col6'];
         $body2 = [
@@ -47,7 +48,8 @@ class BodyController extends Controller
         ];
 
         $table2 = Table::setHeader($header2)
-            ->setBody($body2);
+            ->setBody($body2)
+            ->paginate(true, true, true, true);
 
         $row1 = Row::column(6, Column::append($table1))
             ->column(6, $column);
