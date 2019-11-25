@@ -23,6 +23,7 @@ Route::get('/', 'HomeController@index')->middleware('auth');
 Route::get('/home', 'HomeController@index')->middleware('auth');
 Route::get('chart', 'ChartController@index')->middleware('auth');
 Route::get('body', 'BodyController@index')->middleware('auth');
+Route::get('body1', 'BodyController@data')->middleware('auth');
 
 Route::group(['prefix' => 'table', 'middleware' => 'auth'], function () {
     Route::get('table', 'TableController@table');

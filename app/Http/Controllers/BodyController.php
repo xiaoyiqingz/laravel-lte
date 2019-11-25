@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Log;
 use App\Facades\View\Column;
 use App\Facades\View\Body;
 use App\Facades\View\Row;
@@ -11,7 +12,7 @@ use App\Facades\View\Table;
 
 class BodyController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $item1 = "<div><span> item1 </span></div>";
         $item2 = "<div><span> item2 </span></div>";
@@ -57,5 +58,31 @@ class BodyController extends Controller
         $row2 = Row::column(12, Column::append($table2));
 
         return Body::row($row1)->row($row2)->render();
+    }
+
+    public function data(Request $request)
+    {
+        $draw = $request->get('draw');
+        $start = $request->get('start');
+        $length = $request->get('length');
+
+        $body1 = [];
+        for ($j = 1; $j <= $length; $j++) {
+            $tmp = [];
+            for ($i = 1; $i <= 6; $i++) {
+                $tmp[] = 'r' . ($start  + $j) . $i;
+            }
+
+            $body1[] = $tmp;
+        }
+
+        $result = [
+            'draw' => intval($draw),
+            'recordsTotal' => 89,
+            'recordsFiltered' => 89,
+            'data' => $body1,
+        ];
+
+        echo json_encode($result);
     }
 }

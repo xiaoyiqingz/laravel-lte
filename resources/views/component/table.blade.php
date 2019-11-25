@@ -20,15 +20,6 @@
                     @endforeach
                 </tr>
             </thead>
-            <tbody>
-                @foreach ($table['body'] as $body)
-                <tr>
-                    @foreach ($body as $b)
-                        <td>{{$b}}</td>
-                    @endforeach
-                </tr>
-                @endforeach
-            </tbody>
             @if (isset($table['footer']))
                 <tfoot>
                     <tr>

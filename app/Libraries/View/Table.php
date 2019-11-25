@@ -83,6 +83,13 @@ class Table implements Renderable, JsExtender
         return $this;
     }
 
+    public function setPaginate($key, $val)
+    {
+        $this->paginate[$key] = $val;
+
+        return $this;
+    }
+
     public function extendjs(string $data)
     {
         $this->jsdata[] = $js;
