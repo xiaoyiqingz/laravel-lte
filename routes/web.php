@@ -34,6 +34,12 @@ Route::group(['prefix' => 'table', 'middleware' => 'auth'], function () {
     Route::get('new', 'TableController@newTable');
 });
 
+Route::group(['prefix' => 'form', 'middleware' => 'auth'], function () {
+    Route::get('general', 'FormController@general');
+    Route::get('advanced', 'FormController@advanced');
+    Route::get('editor', 'FormController@editor');
+});
+
 Route::group(['prefix' => 'data', 'middleware' => 'auth'], function () {
     Route::get('table1', 'TableController@data1');
     Route::get('table2', 'TableController@data2');
