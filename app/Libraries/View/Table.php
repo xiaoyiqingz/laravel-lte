@@ -87,7 +87,7 @@ class Table implements Renderable, JsExtender
     public function getJsData()
     {
         if (!$this->paginate['url']) {
-            throw new Exception('Table data url is null');
+            throw new \Exception('Table data url is null');
         }
 
         if (!isset($this->jsdata['table_paginate']) && $this->paginate['enable']) {
