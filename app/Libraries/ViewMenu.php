@@ -9,6 +9,7 @@ class ViewMenu
         $tableChildren = [
             ['icon' => 'fa fa-table', 'title' => '普通图表', 'url' => 'table/table'],
             ['icon' => 'fa fa-table', 'title' => '数据图表', 'url' => 'table/data'],
+            ['icon' => 'fa fa-table', 'title' => '自定义图表', 'url' => 'table/new'],
         ];
 
         $item = [

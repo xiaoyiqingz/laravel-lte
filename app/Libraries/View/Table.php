@@ -27,6 +27,11 @@ class Table implements Renderable, JsExtender
     {
         $this->id = 'table-id' . rand(0, 100);
 
+        $this->initPaginate();
+    }
+
+    public function initPaginate()
+    {
         $this->paginate = [
             'table' => ['id' => $this->id],
             'enable' => true,
@@ -36,6 +41,7 @@ class Table implements Renderable, JsExtender
             'ordering'    => false,
             'info'        => false,
             'autoWidth'   => false,
+            'url'         => '',
         ];
     }
 
@@ -59,33 +65,16 @@ class Table implements Renderable, JsExtender
         return $this;
     }
 
-    public function setBody($body)
-    {
-        $this->body = $body;
+    //public function setBody($body)
+    //{
+    //    $this->body = $body;
 
-        return $this;
-    }
+    //    return $this;
+    //}
 
     public function setFooter($footer)
     {
         $this->footer = $footer;
-
-        return $this;
-    }
-
-    public function paginate(bool $enable = true, $paging = true, $ordering = false, $searching = false)
-    {
-        $this->paginate['enable'] = $enable;
-        $this->paginate['paging'] = $paging;
-        $this->paginate['ordering'] = $ordering;
-        $this->paginate['searching'] = $searching;
-
-        return $this;
-    }
-
-    public function setPaginate($key, $val)
-    {
-        $this->paginate[$key] = $val;
 
         return $this;
     }
@@ -97,6 +86,10 @@ class Table implements Renderable, JsExtender
 
     public function getJsData()
     {
+        if (!$this->paginate['url']) {
+            throw new Exception('Table data url is null');
+        }
+
         if (!isset($this->jsdata['table_paginate']) && $this->paginate['enable']) {
             $this->jsdata['table_paginate'] = view('componentjs.table-pagination-js', $this->paginate);
         }
@@ -112,11 +105,25 @@ class Table implements Renderable, JsExtender
                 'title' => $this->title,
                 'style' => $this->tableStyle,
                 'header' => $this->header,
-                'body' => $this->body,
+                //'body' => $this->body,
                 'footer' => $this->footer,
             ],
         ];
 
         return view('component.table', $datas);
+    }
+
+    public function paginateOrderable(bool $orderable = true)
+    {
+        $this->paginate['ordering'] = $orderable;
+
+        return $this;
+    }
+
+    public function setDataUrl($url)
+    {
+        $this->paginate['url'] = $url;
+
+        return $this;
     }
 }

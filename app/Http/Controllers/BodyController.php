@@ -33,9 +33,10 @@ class BodyController extends Controller
         ];
 
         $table1 = Table::setHeader($header1)
-            ->setBody($body1)
+            //->setBody($body1)
             ->setTitle('Table-blade1')
-            ->paginate();
+            ->setDataUrl('')
+            ->paginateOrderable();
 
         $header2 = ['col1', 'col2', 'col3', 'col4', 'clo5', 'col6'];
         $body2 = [
@@ -48,9 +49,8 @@ class BodyController extends Controller
             ['r71', 'r72', 'r73', 'r74', 'r75', 'r76'],
         ];
 
-        $table2 = Table::setHeader($header2)
-            ->setBody($body2)
-            ->paginate(true, true, true, true);
+        $table2 = Table::setHeader($header2);
+            //->setBody($body2)
 
         $row1 = Row::column(6, Column::append($table1))
             ->column(6, $column);
@@ -83,6 +83,6 @@ class BodyController extends Controller
             'data' => $body1,
         ];
 
-        echo json_encode($result);
+        return  json_encode($result);
     }
 }

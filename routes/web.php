@@ -23,11 +23,17 @@ Route::get('/', 'HomeController@index')->middleware('auth');
 Route::get('/home', 'HomeController@index')->middleware('auth');
 Route::get('chart', 'ChartController@index')->middleware('auth');
 Route::get('body', 'BodyController@index')->middleware('auth');
-Route::get('body1', 'BodyController@data')->middleware('auth');
 
 Route::group(['prefix' => 'table', 'middleware' => 'auth'], function () {
     Route::get('table', 'TableController@table');
     Route::get('table/ori', 'TableController@tableOri');
     Route::get('data', 'TableController@dataTable');
     Route::get('data/ori', 'TableController@dataTableOri');
+
+    Route::get('new', 'TableController@newTable');
+});
+
+Route::group(['prefix' => 'data', 'middleware' => 'auth'], function () {
+    Route::get('table1', 'TableController@data1');
+    Route::get('table2', 'TableController@data2');
 });
