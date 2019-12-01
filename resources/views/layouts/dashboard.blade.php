@@ -92,11 +92,7 @@ desired effect
   <!-- Main Footer -->
 @include('layouts.footer')
 
-  <!-- Control Sidebar -->
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-  immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
+@include('layouts.control-sidebar')
 </div>
 <!-- ./wrapper -->
 
@@ -108,6 +104,8 @@ desired effect
 <script src="{{asset('/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('/adminlte/dist/js/adminlte.min.js')}}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{asset('/adminlte/dist/js/demo.js')}}"></script>
 
 @yield('js')
 
