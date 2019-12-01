@@ -81,7 +81,7 @@ class Table implements Renderable, JsExtender
 
     public function extendjs(string $data)
     {
-        $this->jsdata[] = $js;
+        $this->jsdata[] = $data;
     }
 
     public function getJsData()

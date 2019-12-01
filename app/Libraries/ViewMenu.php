@@ -14,8 +14,9 @@ class ViewMenu
 
         $formChildren = [
             ['icon' => 'fa fa-circle-o', 'title' => '常规元素', 'url' => 'form/general'],
-            ['icon' => 'fa fa-circle-o', 'title' => '高级元素', 'url' => 'table/data'],
-            ['icon' => 'fa fa-circle-o', 'title' => '编辑', 'url' => 'table/new'],
+            ['icon' => 'fa fa-circle-o', 'title' => '高级元素', 'url' => 'form/advanced'],
+            ['icon' => 'fa fa-circle-o', 'title' => '编辑', 'url' => 'form/editor'],
+            ['icon' => 'fa fa-circle-o', 'title' => '自定义', 'url' => 'form/custom'],
         ];
 
         $item = [
