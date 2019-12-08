@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Facades\View\Column;
 use App\Facades\View\Body;
 use App\Facades\View\Form;
+use App\Facades\View\FormInput;
 use App\Facades\View\Row;
 
 class FormController extends Controller
@@ -50,11 +51,20 @@ class FormController extends Controller
     public function custom(Request $request)
     {
         $data = $request->all();
+        $email = $data['email'] ?? '';
+        $passwd = $data['password'] ?? '';
 
-        //$item = "<div><span> item1 </span></div>";
+        $emailInput = FormInput::setId('email')
+            ->setAttrs('email', 'Email Address', 'email')
+            ->set('value', $email)
+            ->set('placeholder', 'Enter email');
+
+        $passwdInput = FormInput::setId('passwd')
+            ->setAttrs('password', 'Password', 'password', $passwd, 'Password');
         $form = Form::setStyle('warning')
             ->setHeader('Custom Form')
-            ->setFormData($data);
+            ->append($emailInput)
+            ->append($passwdInput);
 
         $column = Column::append($form);
 

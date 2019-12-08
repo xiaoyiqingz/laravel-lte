@@ -12,6 +12,8 @@ class Form implements Renderable
 
     public $formData = [];
 
+    public $items = [];
+
     public function render()
     {
         $style = $this->formatStyle($this->style);
@@ -20,9 +22,17 @@ class Form implements Renderable
             'style' => $style,
             'header' => $this->header,
             'formData' => $this->formData,
+            'items' => $this->items,
         ];
 
         return view('component.form', $datas);
+    }
+
+    public function append(Renderable $item)
+    {
+        $this->items[] = $item;
+
+        return $this;
     }
 
     public function setStyle($style = 'primary')

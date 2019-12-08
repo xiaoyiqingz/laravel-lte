@@ -24,18 +24,9 @@
     <!-- form start -->
     <form role="form" class='form-horizontal' action='/data/form1' method="post">
         <div class="box-body">
-            <div class="form-group">
-                <label for="exampleInputEmail1" class="col-md-2 control-label">Email address</label>
-                <div class="col-md-9">
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" name='email' value={{$formData['email'] ?? ''}}>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1" class="col-md-2 control-label">Password</label>
-                <div class="col-md-9">
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" value={{$formData['password'] ?? ''}}>
-                </div>
-            </div>
+            @foreach ($items as $item)
+                {!! $item->render() !!}
+            @endforeach
             <div class="form-group">
                 <label class="control-label col-md-2">Date</label>
 
